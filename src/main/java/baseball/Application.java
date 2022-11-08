@@ -6,18 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) {
-        // TODO: 프로그램 구현
+    private List<Integer> computerSide;
+
+    public Application() {
+        this.computerSide = new ArrayList<>();
     }
 
-    public List<Integer> createRndNumbers() {
-        List<Integer> computerSide = new ArrayList<>();
-
+    public void createRndNumbers() {
         while(computerSide.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
             if (!computerSide.contains(randomNumber)) computerSide.add(randomNumber);
         }
+    }
 
-        return computerSide;
+    public static void main(String[] args) {
+        // TODO: 프로그램 구현
+
     }
 }
