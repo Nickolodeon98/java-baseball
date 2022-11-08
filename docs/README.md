@@ -11,8 +11,12 @@
 
 ## 3. HashMap<String, Integer> distinguish(List<Integer> playerSide)
 
-``플레이어가 입력한 세 개의 숫자가 리스트에 담겨 이 메서드의 매개 변수로 사용된다. 볼 카운트 또는 낫싱에 대한 정보를 해시 맵에 저장한다.``
+``플레이어가 입력한 세 개의 숫자가 리스트에 담겨 이 메서드의 매개 변수로 사용된다. 볼 카운트 정보를 해시 맵에 저장해 리턴한다.``
 
 ## 4. String printToConsole(Map<String, Integer> ballCount)
 
 ``주어진 볼 카운트 정보를 담은 해시 맵을 토대로 문자열 형태의 힌트를 생성해 리턴한다.``
+
+## 5. void commandLineInterface()
+
+``게임 시작부터 종료까지 콘솔에 출력될 인터페이스를 구성한다.``
