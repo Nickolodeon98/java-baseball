@@ -9,19 +9,31 @@ import java.util.Map;
 
 public class Application {
     private List<Integer> computerSide;
+    private final String[] judgeInfo = {"Nothing", "Strike", "Ball"};
+
     public Application() {
         this.computerSide = new ArrayList<>();
     }
 
-    private final String[] judgeInfo = {"Nothing", "Strike", "Ball"};
-
-    public void distinguish(List<Integer> playerSide) {
+    public Map<String, Integer> distinguish(List<Integer> playerSide) {
         Map<String, Integer> ballCount = new HashMap<>();
         for (int i = 0; i < playerSide.size(); i++) {
             String ballCountInfo = judgeInfo[isStrikeOrBallOrNothing(playerSide.get(i), i)];
             if (ballCount.containsKey(ballCountInfo)) ballCount.put(ballCountInfo, ballCount.get(ballCountInfo)+1);
             ballCount.putIfAbsent(ballCountInfo, 1);
         }
+        return ballCount;
+    }
+
+    public String printToConsole(Map<String, Integer> ballCount) {
+        String hint = "";
+        if (!ballCount.containsKey("strike") && !ballCount.containsKey("ball")) return "낫싱";
+
+        for (Map.Entry<String, Integer> countHint : ballCount.entrySet())
+            if (!countHint.getKey().equals("Nothing"))
+                hint = String.join("", hint, String.format("%d%s ",countHint.getValue(), countHint.getKey()));
+
+        return hint;
     }
 
     private int isStrikeOrBallOrNothing(int elemToBeJudged, int pos) {
