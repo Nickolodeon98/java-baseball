@@ -3,14 +3,27 @@ package baseball;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     private List<Integer> computerSide;
-
     public Application() {
         this.computerSide = new ArrayList<>();
     }
+
+    private final String[] judgeInfo = {"Nothing", "Strike", "Ball"};
+
+    public void distinguish(List<Integer> playerSide) {
+        Map<String, Integer> ballCount = new HashMap<>();
+        for (int i = 0; i < playerSide.size(); i++) {
+            String ballCountInfo = judgeInfo[isStrikeOrBallOrNothing(playerSide.get(i), i)];
+            if (ballCount.containsKey(ballCountInfo)) ballCount.put(ballCountInfo, ballCount.get(ballCountInfo)+1);
+            ballCount.putIfAbsent(ballCountInfo, 1);
+        }
+    }
+
     private int isStrikeOrBallOrNothing(int elemToBeJudged, int pos) {
         if (computerSide.contains(elemToBeJudged)) {
             if (computerSide.indexOf(elemToBeJudged) == pos) return 1;
