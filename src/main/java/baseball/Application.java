@@ -11,7 +11,13 @@ public class Application {
     public Application() {
         this.computerSide = new ArrayList<>();
     }
-
+    private int isStrikeOrBallOrNothing(int elemToBeJudged, int pos) {
+        if (computerSide.contains(elemToBeJudged)) {
+            if (computerSide.indexOf(elemToBeJudged) == pos) return 1;
+            return 2;
+        }
+        return 0;
+    }
     public void createRndNumbers() {
         while(computerSide.size() < 3) {
             int randomNumber = Randoms.pickNumberInRange(1, 9);
