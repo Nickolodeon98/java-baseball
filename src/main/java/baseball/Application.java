@@ -72,6 +72,7 @@ public class Application {
             }
             System.out.print("숫자를 입력해주세요: ");
             String inputNum = Console.readLine();
+            if (inputNum.length() > 3) throw new IllegalArgumentException(new Exception());
 
             List<Integer> playerNum = new ArrayList<>();
             playerNum.add(inputNum.charAt(0) - '0');
