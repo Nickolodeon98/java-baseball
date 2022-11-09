@@ -20,3 +20,7 @@
 ## 5. void commandLineInterface()
 
 ``게임 시작부터 종료까지 콘솔에 출력될 인터페이스를 구성한다.``
+
+## 6. String addWhiteSpace(String str)
+
+``주어진 문자열이 빈 문자열이 아닌 경우 앞에 띄어쓰기를 붙여 리턴한다. 빈 문자열인 경우 그냥 리턴한다.``
