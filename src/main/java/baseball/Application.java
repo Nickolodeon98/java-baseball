@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class Application {
     private List<Integer> computerSide;
@@ -40,7 +42,6 @@ public class Application {
                 hint = String.join("", String.format("%d%s", countHint.getValue(), countHint.getKey()), hint);
             }
         }
-
         return hint;
     }
 
@@ -67,8 +68,8 @@ public class Application {
 
     public void commandLineInterface() {
         boolean restart = true;
-
-        while (true) {
+        boolean stop = false;
+        while (!stop) {
             if (restart) {
                 computerSide.clear();
                 System.out.println("숫자 야구 게임을 시작합니다.");
@@ -88,21 +89,21 @@ public class Application {
             String hint = printToConsole(ballCount);
             System.out.println(hint);
             if (hint.equals("3스트라이크")) {
-                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n" +
-                        "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+                System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료\n게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
                 String option = Console.readLine();
-                if (option.equals("2")) break;
-                else if (option.equals("1")) restart = true;
+                stop = isStop(option, (str)->str.equals("2"));
+                restart = option.equals("1");
             }
         }
     }
 
+    private boolean isStop(String option, Predicate<String> predicate) {
+        return predicate.test(option);
+    }
+
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-//        List<Integer> testList = new ArrayList<>();
-//        testList.add(5);
-//        testList.add(8);
-//        testList.add(9);
         Application application = new Application();
         application.commandLineInterface();
     }
