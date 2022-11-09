@@ -36,12 +36,17 @@ public class Application {
 
         for (Map.Entry<String, Integer> countHint : ballCount.entrySet()) {
             if (!countHint.getKey().equals("낫싱")) {
-                if (!hint.equals("")) hint = String.join("", " ", hint);
+                hint = addWhiteSpace(hint);
                 hint = String.join("", String.format("%d%s", countHint.getValue(), countHint.getKey()), hint);
             }
         }
 
         return hint;
+    }
+
+    private String addWhiteSpace(String str) {
+        if (!str.equals("")) str = String.join("", " ", str);
+        return str;
     }
 
     public int isStrikeOrBallOrNothing(int elemToBeJudged, int pos) {
